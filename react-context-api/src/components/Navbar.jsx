@@ -1,9 +1,28 @@
-import React from 'react'
+import { Link } from "react-router-dom";
+import { useBudget } from "../context/BudgetContext.jsx";
 
+// barra superiore
 const Navbar = () => {
-  return (
-    <div>Navbar</div>
-  )
-}
+  const { budgetMode, switchBudgetMode } = useBudget();
 
-export default Navbar
+  return (
+    <nav className="navbar navbar-expand navbar-dark bg-dark">
+      <div className="container">
+        {/* link home */}
+        <Link to="/" className="navbar-brand">Mini e commerce</Link>
+
+        {/* bottone toggle */}
+        <div className="ms-auto">
+          <button
+            className={`btn ${budgetMode ? "btn-warning" : "btn-outline-warning"}`}
+            onClick={switchBudgetMode}
+          >
+            {budgetMode ? "Disattiva Modalità Budget" : "Attiva Modalità Budget"}
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
